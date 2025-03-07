@@ -8,6 +8,32 @@
   --terminal-glow: rgba(0, 255, 0, 0.15);
 }
 
+@theme {
+  /* color */
+  --color-terminal-background: var(--terminal-background);
+  --color-terminal-foreground: var(--terminal-foreground);
+  --color-terminal-cursor: var(--terminal-cursor);
+  --color-terminal-selection: var(--terminal-selection);
+  --color-terminal-glow: var(--terminal-glow);
+
+  /* shadow */
+  --shadow-glow: 0 0 16px var(--terminal-foreground);
+
+  /* animation */
+  --animate-fade-in: fade-in 0.5s ease-out forwards;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --terminal-background: #0a0a0a;
@@ -32,8 +58,9 @@ body {
 }
 
 .terminal-window {
-  border: 2px solid var(--terminal-foreground);
-  border-radius: 8px;
+  border: 1px solid var(--terminal-foreground);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
   background: var(--terminal-background);
   box-shadow: 0 0 20px var(--terminal-glow);
   height: 100vh;
@@ -45,7 +72,6 @@ body {
   flex-direction: column;
   position: relative;
   transition: box-shadow 0.3s ease;
-  overflow: hidden;
 }
 
 @media (min-width: 640px) {
@@ -135,40 +161,6 @@ body {
   text-shadow: 0 0 8px var(--terminal-foreground);
 }
 
-/* Mobile input optimizations */
-@media (max-width: 639px) {
-  .terminal-input {
-    font-size: 16px;
-    -webkit-appearance: none;
-    border-radius: 0;
-  }
-
-  .terminal-line {
-    padding: 0.625rem 0;
-  }
-
-  .terminal-prompt {
-    font-size: 0.875rem;
-  }
-
-  .terminal-window {
-    border: none;
-    box-shadow: inset 0 0 50px var(--terminal-glow);
-  }
-
-  .terminal-content {
-    padding: 0.75rem;
-  }
-}
-
-/* Touch feedback */
-@media (hover: none) {
-  .terminal-line:active {
-    background: var(--terminal-glow);
-    border-radius: 4px;
-  }
-}
-
 /* Custom scrollbar */
 .terminal-content::-webkit-scrollbar {
   width: 6px;
@@ -190,15 +182,58 @@ body {
   opacity: 0.8;
 }
 
+/* Command suggestions */
+.terminal-content .suggestions {
+  background: var(--terminal-background);
+  border: 1px solid var(--terminal-foreground);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 20px var(--terminal-glow);
+  animation: fadeIn 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.terminal-content .suggestion-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.terminal-content .suggestion-item:hover,
+.terminal-content .suggestion-item.selected {
+  background: var(--terminal-glow);
+}
+
+.terminal-content .suggestion-item .command {
+  font-weight: bold;
+  color: var(--terminal-foreground);
+}
+
+.terminal-content .suggestion-item .description {
+  opacity: 0.7;
+  font-size: 0.875em;
+}
+
+/* Skill bars */
+.skill-bar {
+  position: relative;
+}
+
+.skill-bar:hover .bar-fill {
+  filter: brightness(1.2);
+  box-shadow: 0 0 12px var(--terminal-foreground);
+}
+
+.skill-bar .bar-fill {
+  transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Animations */
-.animate-pulse {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
 @keyframes pulse {
   0%,
   100% {
@@ -232,86 +267,14 @@ body {
 }
 
 /* Utilities */
+.animate-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
 .whitespace-pre-line {
   white-space: pre-line;
-}
-
-/* Command suggestions */
-.terminal-content .suggestions {
-  background: var(--terminal-background);
-  border: 1px solid var(--terminal-foreground);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 0 20px var(--terminal-glow);
-  animation: fadeIn 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.terminal-content .suggestions::-webkit-scrollbar {
-  width: 4px;
-}
-
-.terminal-content .suggestions::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.terminal-content .suggestions::-webkit-scrollbar-thumb {
-  background-color: var(--terminal-foreground);
-  border-radius: 4px;
-  opacity: 0.5;
-}
-
-.terminal-content .suggestion-item {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.2s ease;
-}
-
-.terminal-content .suggestion-item:hover,
-.terminal-content .suggestion-item.selected {
-  background: var(--terminal-glow);
-}
-
-.terminal-content .suggestion-item .command {
-  font-weight: bold;
-  color: var(--terminal-foreground);
-}
-
-.terminal-content .suggestion-item .description {
-  opacity: 0.7;
-  font-size: 0.875em;
-}
-
-/* Command highlighting */
-.terminal-content a {
-  color: var(--terminal-foreground);
-  text-decoration: none;
-  position: relative;
-}
-
-.terminal-content a:hover {
-  text-shadow: 0 0 8px var(--terminal-foreground);
-}
-
-.terminal-content a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--terminal-foreground);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-.terminal-content a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
 }
