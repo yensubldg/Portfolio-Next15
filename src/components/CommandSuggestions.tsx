@@ -12,6 +12,7 @@ interface CommandSuggestionsProps {
   selectedIndex: number;
   onSelect: (command: string) => void;
   inputRef: React.RefObject<HTMLInputElement | null>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const AVAILABLE_COMMANDS: Command[] = [
@@ -27,32 +28,44 @@ export const CommandSuggestions: React.FC<CommandSuggestionsProps> = ({
   selectedIndex,
   onSelect,
   inputRef,
+  containerRef,
 }) => {
   const [showAbove, setShowAbove] = useState(true);
+  const [maxHeight, setMaxHeight] = useState<number>(200);
 
   useEffect(() => {
     const updatePosition = () => {
-      if (!inputRef.current) return;
+      if (!inputRef.current || !containerRef.current) return;
 
       const inputRect = inputRef.current.getBoundingClientRect();
+      const containerRect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const spaceBelow = viewportHeight - inputRect.bottom;
-      const spaceAbove = inputRect.top;
 
-      // Switch position based on available space
-      // Add extra padding for the suggestions
-      setShowAbove(spaceBelow < 200 && spaceAbove > spaceBelow);
+      // Calculate space above and below input
+      const spaceBelow = viewportHeight - inputRect.bottom;
+      const spaceAbove = inputRect.top - containerRect.top;
+
+      // Determine position and max height
+      if (spaceBelow < 200 && spaceAbove > spaceBelow) {
+        setShowAbove(true);
+        setMaxHeight(Math.min(spaceAbove - 10, 300));
+      } else {
+        setShowAbove(false);
+        setMaxHeight(Math.min(spaceBelow - 10, 300));
+      }
     };
 
     updatePosition();
-    window.addEventListener("scroll", updatePosition);
+
+    // Update position on scroll and resize
+    containerRef.current?.addEventListener("scroll", updatePosition);
     window.addEventListener("resize", updatePosition);
 
     return () => {
-      window.removeEventListener("scroll", updatePosition);
+      containerRef.current?.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
     };
-  }, [inputRef]);
+  }, [inputRef, containerRef]);
 
   const filteredCommands = AVAILABLE_COMMANDS.filter((cmd) =>
     cmd.name.toLowerCase().startsWith(input.toLowerCase())
@@ -66,7 +79,7 @@ export const CommandSuggestions: React.FC<CommandSuggestionsProps> = ({
         showAbove ? "bottom-full mb-2" : "top-full mt-2"
       } left-0 w-full z-10`}
       style={{
-        maxHeight: "200px",
+        maxHeight: `${maxHeight}px`,
         overflowY: "auto",
       }}
     >

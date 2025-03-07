@@ -202,6 +202,7 @@ export const Terminal: React.FC = () => {
               selectedIndex={selectedSuggestionIndex}
               onSelect={handleSuggestionSelect}
               inputRef={inputRef}
+              containerRef={containerRef}
             />
             <form
               onSubmit={handleSubmit}

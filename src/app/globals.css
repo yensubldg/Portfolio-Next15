@@ -244,6 +244,23 @@ body {
   overflow: hidden;
   box-shadow: 0 0 20px var(--terminal-glow);
   animation: fadeIn 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.terminal-content .suggestions::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-content .suggestions::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-content .suggestions::-webkit-scrollbar-thumb {
+  background-color: var(--terminal-foreground);
+  border-radius: 4px;
+  opacity: 0.5;
 }
 
 .terminal-content .suggestion-item {
