@@ -12,12 +12,24 @@ export const Matrix: React.FC<{ onStop?: () => void }> = ({ onStop }) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Get terminal theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const terminalForeground = computedStyle
+      .getPropertyValue("--terminal-foreground")
+      .trim();
+    const terminalBackground = computedStyle
+      .getPropertyValue("--terminal-background")
+      .trim();
+
     // Set canvas size
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const updateSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    updateSize();
 
     // Matrix characters
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
 
     // Set up the columns
     const fontSize = 16;
@@ -36,10 +48,10 @@ export const Matrix: React.FC<{ onStop?: () => void }> = ({ onStop }) => {
       if (!ctx) return;
 
       // Semi-transparent black background for trail effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillStyle = `${terminalBackground}0D`; // Add alpha for trail effect
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#0F0";
+      // Set text properties
       ctx.font = `${fontSize}px monospace`;
 
       // Draw characters
@@ -47,8 +59,15 @@ export const Matrix: React.FC<{ onStop?: () => void }> = ({ onStop }) => {
         // Random character
         const char = chars[Math.floor(Math.random() * chars.length)];
 
+        // Calculate color based on terminal theme
+        const alpha = Math.random();
+        ctx.fillStyle = terminalForeground.startsWith("#")
+          ? `${terminalForeground}${Math.floor(alpha * 255)
+              .toString(16)
+              .padStart(2, "0")}`
+          : terminalForeground;
+
         // Draw character
-        ctx.fillStyle = `rgba(0, 255, 0, ${Math.random()})`;
         ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
         // Reset when off screen
@@ -66,13 +85,7 @@ export const Matrix: React.FC<{ onStop?: () => void }> = ({ onStop }) => {
     };
 
     // Handle window resize
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", handleResize);
-    animationFrameId = requestAnimationFrame(draw);
+    window.addEventListener("resize", updateSize);
 
     // Handle escape key to stop animation
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -85,18 +98,21 @@ export const Matrix: React.FC<{ onStop?: () => void }> = ({ onStop }) => {
 
     window.addEventListener("keydown", handleKeyDown);
 
+    // Start animation
+    animationFrameId = requestAnimationFrame(draw);
+
     return () => {
       active = false;
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateSize);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onStop]);
 
   return (
     <div className="fixed inset-0 z-50">
-      <canvas ref={canvasRef} className="bg-black" />
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-green-400 text-sm">
+      <canvas ref={canvasRef} className="bg-terminal-background" />
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-terminal-foreground text-sm">
         Press ESC to exit Matrix
       </div>
     </div>
