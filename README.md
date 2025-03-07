@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Terminal Portfolio
 
-## Getting Started
+A terminal-style portfolio website built with Next.js 15, TypeScript, and TailwindCSS v4. Experience a unique way of exploring my portfolio through a command-line interface.
 
-First, run the development server:
+## 🚀 Features
+
+### Terminal Interface
+
+- Interactive command-line experience
+- Real-time typing effects
+- Command history
+- Ctrl+C support
+- Custom scrollbar
+
+### Smart Command Suggestions
+
+- Auto-suggestions as you type
+- Keyboard navigation (↑↓ arrows)
+- Tab completion
+- Command descriptions
+- Adaptive positioning (auto-detects space)
+
+### Available Commands
+
+- `help` - Show available commands
+- `about` - Learn about me
+- `projects` - View my projects
+- `contact` - Get in touch
+- `clear` - Clear terminal
+
+### Responsive Design
+
+- Mobile-optimized interface
+- Touch-friendly interactions
+- Adaptive layout
+- Terminal-style aesthetics
+
+### Technical Features
+
+- Next.js 15 with App Router
+- TypeScript for type safety
+- TailwindCSS v4 for styling
+- Server & Client Components
+- Mobile-first approach
+
+## 🛠️ Technology Stack
+
+- Next.js 15
+- TypeScript
+- TailwindCSS v4
+- React Server Components
+- CSS Animations
+
+## 📱 Mobile Support
+
+The portfolio is fully optimized for mobile devices with:
+
+- Full viewport height handling
+- Touch-friendly command suggestions
+- Optimized text sizes
+- Mobile-specific animations
+- Smooth scrolling
+
+## 💻 Development
 
 ```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Visit the website
+2. Type `help` to see available commands
+3. Use command suggestions or type commands directly
+4. Navigate with keyboard or mouse/touch
+5. Press Ctrl+C to cancel current input
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⌨️ Keyboard Shortcuts
 
-## Learn More
+- `↑/↓` - Navigate through suggestions
+- `Tab` - Complete command
+- `Enter` - Execute command
+- `Ctrl+C` - Cancel/Clear input
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Customization
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The terminal theme can be customized through:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- TailwindCSS configuration
+- CSS variables for colors
+- Terminal window styling
+- Animation timings
 
-## Deploy on Vercel
+## 📜 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MIT License - feel free to use this project as a template for your own portfolio!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🙏 Acknowledgments
+
+- Inspired by terminal-style interfaces
+- Built with modern web technologies
+- Optimized for all devices
+
+---
+
+Made with ❤️ using Next.js and TypeScript
