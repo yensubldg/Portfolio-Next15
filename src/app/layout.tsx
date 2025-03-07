@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import { Fira_Code } from "next/font/google";
 import "./globals.css";
+
+const firaCode = Fira_Code({
+  display: "swap",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Terminal Portfolio | Interactive Developer Portfolio",
@@ -27,6 +33,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  metadataBase: new URL("https://yensubldg.id.vn"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -35,14 +42,7 @@ export const metadata: Metadata = {
     description:
       "Explore my developer portfolio through an interactive terminal interface. Built with Next.js, TypeScript, and modern web technologies.",
     siteName: "Terminal Portfolio",
-    images: [
-      {
-        url: "/og-image.svg",
-        width: 1200,
-        height: 630,
-        alt: "Terminal Portfolio Preview",
-      },
-    ],
+    images: "/og-image.svg",
   },
   robots: {
     index: true,
@@ -63,13 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={firaCode.className}>
       <body className="bg-terminal-background overflow-hidden">{children}</body>
     </html>
   );
