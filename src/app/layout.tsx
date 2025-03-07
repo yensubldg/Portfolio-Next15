@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     "Next.js",
     "TailwindCSS",
   ],
-  authors: [{ name: "Your Name", url: "https://github.com/yourusername" }],
-  creator: "Your Name",
-  publisher: "Your Name",
+  authors: [{ name: "Thang Truong", url: "https://github.com/yensubldg" }],
+  creator: "Thang Truong",
+  publisher: "Thang Truong",
   formatDetection: {
     email: false,
     telephone: false,
@@ -30,33 +30,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio-url.com",
+    url: "https://yensubldg.id.vn",
     title: "Terminal Portfolio | Interactive Developer Portfolio",
     description:
       "Explore my developer portfolio through an interactive terminal interface. Built with Next.js, TypeScript, and modern web technologies.",
     siteName: "Terminal Portfolio",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "Terminal Portfolio Preview",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Terminal Portfolio | Interactive Developer Portfolio",
-    description:
-      "Explore my developer portfolio through an interactive terminal interface",
-    creator: "@yourtwitterhandle",
-    images: ["/og-image.jpg"],
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
   },
   robots: {
     index: true,
