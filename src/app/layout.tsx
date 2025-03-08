@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
+import Footer from "~/components/Footer";
 
 const firaCode = Fira_Code({
   display: "swap",
@@ -64,7 +65,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={firaCode.className}>
-      <body className="bg-terminal-background overflow-hidden">{children}</body>
+      <body className="bg-terminal-background overflow-hidden">
+        {children}
+
+        <Footer />
+      </body>
     </html>
   );
 }
