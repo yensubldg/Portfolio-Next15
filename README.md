@@ -1,119 +1,98 @@
 # Terminal Portfolio
 
-A terminal-style portfolio website built with Next.js 15, TypeScript, and TailwindCSS v4. Experience a unique way of exploring my portfolio through a command-line interface.
+A unique portfolio website built with Next.js that simulates a terminal interface. Features interactive commands, theme customization, and a built-in Snake game.
 
-## 🚀 Features
+## Features
 
-### Terminal Interface
+- 🖥️ Terminal-like interface
+- 🎮 Interactive Snake game
+- 🎨 Multiple theme options
+- ⌨️ Command suggestions
+- 📱 Responsive design
+- ✨ Matrix effect
+- 🚀 Fast performance
+- 📂 Project showcase
+- 💼 Experience timeline
+- 🎯 Skills overview
 
-- Interactive command-line experience
-- Real-time typing effects
-- Command history
-- Ctrl+C support
-- Custom scrollbar
-
-### Smart Command Suggestions
-
-- Auto-suggestions as you type
-- Keyboard navigation (↑↓ arrows)
-- Tab completion
-- Command descriptions
-- Adaptive positioning (auto-detects space)
-
-### Available Commands
+## Available Commands
 
 - `help` - Show available commands
 - `about` - Learn about me
-- `projects` - View my projects
+- `skills` - View technical skills
+- `experience` - View work experience
+- `projects` - View projects
 - `contact` - Get in touch
+- `theme` - Change terminal theme
+- `matrix` - Enter the matrix
+- `game` - Play snake game
+- `status` - Check availability
+- `cv` - Download resume
 - `clear` - Clear terminal
 
-### Responsive Design
+## Tech Stack
 
-- Mobile-optimized interface
-- Touch-friendly interactions
-- Adaptive layout
-- Terminal-style aesthetics
-
-### Technical Features
-
-- Next.js 15 with App Router
-- TypeScript for type safety
-- TailwindCSS v4 for styling
-- Server & Client Components
-- Mobile-first approach
-
-## 🛠️ Technology Stack
-
-- Next.js 15
+- Next.js
 - TypeScript
-- TailwindCSS v4
-- React Server Components
-- CSS Animations
+- Tailwind CSS
+- Font Awesome
+- React Hooks
 
-## 📱 Mobile Support
+## Getting Started
 
-The portfolio is fully optimized for mobile devices with:
-
-- Full viewport height handling
-- Touch-friendly command suggestions
-- Optimized text sizes
-- Mobile-specific animations
-- Smooth scrolling
-
-## 💻 Development
+1. Clone the repository:
 
 ```bash
-# Clone the repository
-git clone <repository-url>
+git clone https://github.com/yensubldg/Portfolio-Next15.git
+```
 
-# Install dependencies
+2. Install dependencies:
+
+```bash
 npm install
+```
 
-# Run development server
+3. Run the development server:
+
+```bash
 npm run dev
+```
 
-# Build for production
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Build
+
+To create a production build:
+
+```bash
 npm run build
-
-# Start production server
 npm start
 ```
 
-## 🎯 Usage
+## Code Structure
 
-1. Visit the website
-2. Type `help` to see available commands
-3. Use command suggestions or type commands directly
-4. Navigate with keyboard or mouse/touch
-5. Press Ctrl+C to cancel current input
+```
+src/
+├── app/              # Next.js app directory
+├── components/       # React components
+├── constants/        # Constants and configurations
+├── hooks/           # Custom React hooks
+└── types/           # TypeScript type definitions
+```
 
-## ⌨️ Keyboard Shortcuts
+## Contributing
 
-- `↑/↓` - Navigate through suggestions
-- `Tab` - Complete command
-- `Enter` - Execute command
-- `Ctrl+C` - Cancel/Clear input
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
-## 🎨 Customization
+## Author
 
-The terminal theme can be customized through:
+- GitHub: [@yensubldg](https://github.com/yensubldg)
+- Email: [windev.thang@gmail.com](mailto:windev.thang@gmail.com)
 
-- TailwindCSS configuration
-- CSS variables for colors
-- Terminal window styling
-- Animation timings
+## License
 
-## 📜 License
-
-MIT License - feel free to use this project as a template for your own portfolio!
-
-## 🙏 Acknowledgments
-
-- Inspired by terminal-style interfaces
-- Built with modern web technologies
-- Optimized for all devices
-
----
-
-Made with ❤️ using Next.js and TypeScript
+This project is licensed under the MIT License.
