@@ -152,9 +152,16 @@ export const Terminal: React.FC = () => {
         setShowMatrix(true);
         output = "Entering the Matrix... Press ESC to exit";
         break;
-      case "game":
-        output = <SnakeGame />;
+      case "game": {
+        output = (
+          <SnakeGame
+            onClose={() =>
+              setHistory((prev) => [...prev, { input: "clear", output: null }])
+            }
+          />
+        );
         break;
+      }
       case "cv":
         const cvUrl = "/YourName_CV.pdf"; // Update with your CV path
         window.open(cvUrl, "_blank");
